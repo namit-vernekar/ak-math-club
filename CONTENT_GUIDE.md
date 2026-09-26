@@ -157,7 +157,7 @@ Open `src/data/siteInfo.ts` and edit the `meeting` section:
 Anything left as `""` shows "TBA". In the same file you can also update:
 
 - `howToJoin`: a sentence or two about how to join (shown on About / Join).
-- `links`: Band, Discord, Google Classroom, Remind, Instagram. Empty ones show "Link coming soon" and are
+- `links`: Band, Google Classroom, Remind, Instagram. Empty ones show "Link coming soon" and are
   hidden from the footer.
 - `schoolYear`: change it at the start of each year (e.g. `"2027–2028"`).
 - `siteUrl`: the public address of the site once it's deployed (used for link previews).

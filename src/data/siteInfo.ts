@@ -39,7 +39,6 @@ export const siteInfo = {
   // Links. Leave "" for anything the club doesn't have yet.
   links: {
     band: "https://band.us/n/a6aabanawe249",
-    discord: "https://discord.gg/u9fmj3fjFH", // from the old club website
     googleClassroom: "",
     remind: "",
     instagram: "", // coming soon

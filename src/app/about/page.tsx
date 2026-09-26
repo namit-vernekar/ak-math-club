@@ -19,7 +19,6 @@ export default function AboutPage() {
   const { meeting, links } = siteInfo;
   const channels = [
     { label: "Band", url: links.band },
-    { label: "Discord", url: links.discord },
     { label: "Google Classroom", url: links.googleClassroom },
     { label: "Remind", url: links.remind },
     { label: "Instagram", url: links.instagram },

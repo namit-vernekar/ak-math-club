@@ -7,7 +7,6 @@ import { navItems } from "@/lib/nav";
 export function SiteFooter() {
   const connect = [
     { label: "Band", url: siteInfo.links.band },
-    { label: "Discord", url: siteInfo.links.discord },
     { label: "Google Classroom", url: siteInfo.links.googleClassroom },
     { label: "Remind", url: siteInfo.links.remind },
     { label: "Instagram", url: siteInfo.links.instagram },
