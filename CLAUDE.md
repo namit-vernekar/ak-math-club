@@ -46,5 +46,5 @@ Maintained by student officers who are not professional developers. Keep it simp
 - **Never invent club information**: no made-up officer names, meeting times, competition dates,
   registration details, or claims that the club participates in a competition. Use placeholders.
 - Info carried over from the old site (https://sites.google.com/view/akmathclub): advisor Mr. Erb
-  (email, website), officers Anirudh/Ishi (Co-Presidents), Ameya (now Competition Manager per user; Namit is ICC Rep), "Friday A103", competitions sheet (Discord removed at user request; Band is the main channel),
+  (email, website), officers Anirudh/Ishi (Co-Presidents), Ameya (now Competition Manager per user; Namit is ICC Rep), "Fridays A103" (confirmed for 2026–27), competitions sheet (not yet confirmed current) (Discord removed at user request; Band is the main channel),
   Mu Alpha Theta roster, 24–25 and 25–26 schedules.

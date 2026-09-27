@@ -21,6 +21,11 @@ export default function ResourcesPage() {
 
       <section className="section" aria-label="All lessons">
         <div className="container">
+          {siteInfo.resourcesNote && (
+            <p className="callout" style={{ marginBottom: 24 }}>
+              {siteInfo.resourcesNote}
+            </p>
+          )}
           <LessonArchive lessons={lessonsNewestFirst} />
 
           {siteInfo.pastYears.length > 0 && (

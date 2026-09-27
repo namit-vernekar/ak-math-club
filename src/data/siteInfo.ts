@@ -27,7 +27,7 @@ export const siteInfo = {
   siteUrl: "https://ak-math-club.vercel.app",
 
   meeting: {
-    // "Fridays" and "A103" come from the old club website. Confirm them for 2026–2027.
+    // Confirmed for 2026–2027.
     day: "Fridays",
     time: "2:15–3:00 PM",
     room: "A103",
@@ -41,11 +41,15 @@ export const siteInfo = {
     band: "https://band.us/n/a6aabanawe249",
     googleClassroom: "",
     remind: "",
-    instagram: "", // coming soon
+    instagram: "https://www.instagram.com/akmathclub_/",
     // Competition spreadsheet linked from the old club website.
     competitionsSheet:
       "https://docs.google.com/spreadsheets/d/1nXfohB_zu6-CQkkM1-TPChPYR1NWzf8dggsBJlJApBU/edit?usp=sharing",
   },
+
+  // Shown above the lesson list on the Weekly Resources page. Leave "" to hide.
+  resourcesNote:
+    "Some slide shows are shared only with the school. If Google asks you to request access, sign in with your school Google account.",
 
   // Mu Alpha Theta (math honor society) info, carried over from the old site.
   muAlphaTheta: {

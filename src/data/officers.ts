@@ -42,8 +42,8 @@ export const officers: Officer[] = [
   { role: "Co-President", name: "Ishi", grade: "Senior" },
   { role: "ICC Representative", name: "Namit" },
   { role: "Competition Manager", name: "Ameya", grade: "Senior" },
-  { role: "Secretary", name: "" },
-  { role: "Underclassmen President", name: "" },
-  { role: "General Officer", name: "" },
-  { role: "Social Media Manager", name: "" },
+  { role: "Secretary", name: "Atharv" },
+  { role: "Underclassmen President", name: "Abby" },
+  { role: "General Officer", name: "Anya" },
+  { role: "Social Media Manager", name: "Rayan" },
 ];
