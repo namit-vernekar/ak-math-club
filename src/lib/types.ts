@@ -14,6 +14,20 @@
  */
 export type ResourceLink = string;
 
+/** One Problem of the Week. Math goes between dollar signs, e.g. $a_1 = 1$. */
+export type WeeklyProblem = {
+  /** Where it's from, e.g. "2019 AMC 10A, Problem 15". Always credit the source. */
+  source: string;
+  /** The problem text. Use String.raw`...` when it contains LaTeX backslashes. */
+  problem: string;
+  /** Optional multiple-choice answers, in order (A), (B), (C)... */
+  choices?: string[];
+  /** The answer, e.g. "(E) 8078" or "252". Shown once the next week is posted. */
+  answer: string;
+  /** Optional link to a worked solution (e.g. the AoPS Wiki page). */
+  solution?: string;
+};
+
 export type WeeklyLesson = {
   /** Week number, e.g. 4. Every week must have a different number. */
   week: number;
@@ -39,6 +53,14 @@ export type WeeklyLesson = {
   };
   /** Optional short note shown on the card, e.g. "Bring a calculator." */
   notes?: string;
+  /**
+   * Optional Problem of the Week, in two levels:
+   * level1 ≈ AMC 10 problem 15, level2 ≈ AIME problem 4–5.
+   */
+  problems?: {
+    level1?: WeeklyProblem;
+    level2?: WeeklyProblem;
+  };
 };
 
 export type Officer = {

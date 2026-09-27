@@ -9,8 +9,9 @@ import { competitions } from "@/data/competitions";
 import { events } from "@/data/events";
 import { advisor, officers } from "@/data/officers";
 import { announcements, siteInfo } from "@/data/siteInfo";
-import type { WeeklyLesson } from "@/lib/types";
+import type { WeeklyLesson, WeeklyProblem } from "@/lib/types";
 import { hasLink } from "@/lib/format";
+import { findEscapeMistake, renderMath } from "@/lib/math";
 
 const DATE_RE = /^\d{4}-\d{2}-\d{2}$/;
 
@@ -32,6 +33,23 @@ function checkLink(file: string, where: string, url: string | undefined) {
   }
 }
 
+function validateProblem(where: string, p: WeeklyProblem) {
+  const file = "weeklyLessons.ts";
+  if (!p.source?.trim()) fail(file, `${where}: add a "source" (e.g. "2019 AMC 10A, Problem 15") to credit the problem.`);
+  if (!p.problem?.trim()) fail(file, `${where}: "problem" can't be empty.`);
+  if (!p.answer?.trim()) fail(file, `${where}: add the "answer" (it stays hidden until the next week is posted).`);
+  checkLink(file, `${where} solution`, p.solution);
+  for (const text of [p.problem, p.answer, ...(p.choices ?? [])]) {
+    const mistake = findEscapeMistake(text);
+    if (mistake) fail(file, `${where}: ${mistake}`);
+    try {
+      renderMath(text);
+    } catch (err) {
+      fail(file, `${where}: a math formula has a typo. ${(err as Error).message}`);
+    }
+  }
+}
+
 function validate() {
   const seen = new Set<number>();
   for (const l of weeklyLessons) {
@@ -42,6 +60,9 @@ function validate() {
     if (!isValidDate(l.date)) fail("weeklyLessons.ts", `${where}: date "${l.date}" must look like "2026-09-25" (YYYY-MM-DD).`);
     if (!l.topic?.trim()) fail("weeklyLessons.ts", `${where}: "topic" can't be empty.`);
     for (const [key, url] of Object.entries(l.resources ?? {})) checkLink("weeklyLessons.ts", `${where} ${key}`, url);
+    for (const [level, p] of Object.entries(l.problems ?? {})) {
+      if (p) validateProblem(`${where} ${level}`, p);
+    }
   }
 
   for (const o of officers) {
@@ -80,6 +101,59 @@ export const lessonsNewestFirst: WeeklyLesson[] = [...weeklyLessons].sort(
 );
 
 export const latestLesson: WeeklyLesson | undefined = lessonsNewestFirst[0];
+
+/** A Problem of the Week, with its math already turned into HTML. */
+export type ProblemView = {
+  level: 1 | 2;
+  source: string;
+  problemHtml: string;
+  choicesHtml: string[];
+  answerHtml: string;
+  solution?: string;
+};
+
+export type ProblemWeek = {
+  week: number;
+  date: string;
+  topic: string;
+  problems: ProblemView[];
+  /** Answers are revealed once a newer week has been posted. */
+  answersRevealed: boolean;
+};
+
+function toView(level: 1 | 2, p: WeeklyProblem): ProblemView {
+  return {
+    level,
+    source: p.source,
+    problemHtml: renderMath(p.problem),
+    choicesHtml: (p.choices ?? []).map(renderMath),
+    answerHtml: renderMath(p.answer),
+    solution: hasLink(p.solution) ? p.solution : undefined,
+  };
+}
+
+/** Every week that has problems, newest first. */
+export const problemWeeks: ProblemWeek[] = lessonsNewestFirst
+  .filter((l) => l.problems?.level1 || l.problems?.level2)
+  .map((l) => ({
+    week: l.week,
+    date: l.date,
+    topic: l.topic,
+    problems: [
+      l.problems?.level1 && toView(1, l.problems.level1),
+      l.problems?.level2 && toView(2, l.problems.level2),
+    ].filter((p): p is ProblemView => !!p),
+    answersRevealed: l !== latestLesson,
+  }));
+
+/** This week's problems (only if the newest lesson has them). */
+export const currentProblemWeek = problemWeeks.find((w) => !w.answersRevealed);
+
+/** The most recent week whose answers are now revealed. */
+export const lastRevealedWeek = problemWeeks.find((w) => w.answersRevealed);
+
+/** Week numbers that have problems (used to link lesson cards to /problems). */
+export const weeksWithProblems = problemWeeks.map((w) => w.week);
 
 /**
  * Events sorted soonest first, dropping ones already past when the site was built.

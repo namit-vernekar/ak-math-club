@@ -70,6 +70,49 @@ file and which week to fix. Nothing breaks on the live site.
     notes: "Bring a calculator next week.",
 ```
 
+## How to add a Problem of the Week
+
+Each week can have two problems: **Level 1** (about an AMC 10 #15) and **Level 2** (about an AIME #4–5).
+Add a `problems` section inside that week in `src/data/weeklyLessons.ts`, right after `resources`:
+
+```ts
+    problems: {
+      level1: {
+        source: "2019 AMC 10A, Problem 15",
+        problem: String.raw`A sequence is defined by $a_1 = 1$, $a_2 = \frac{3}{7}$, ...`,
+        choices: ["2020", "4039", "6057", "6061", "8078"],   // leave this line out for AIME
+        answer: "(E) 8078",
+        solution: "https://artofproblemsolving.com/wiki/index.php/2019_AMC_10A_Problems/Problem_15",
+      },
+      level2: {
+        source: "2019 AIME I, Problem 5",
+        problem: String.raw`A moving particle starts at the point $(4,4)$ ...`,
+        answer: "252",
+        solution: "https://artofproblemsolving.com/wiki/index.php/2019_AIME_I_Problems/Problem_5",
+      },
+    },
+```
+
+What happens automatically:
+- The newest week's problems appear on the **Home** page and the **Problem of the Week** page.
+- The answers stay hidden until you post the **next** week. Then they appear under "Show answer",
+  with a link to the solutions.
+- If a week has no problems, the section simply doesn't show.
+
+**Writing math:** put math between dollar signs. `$a_1 = 1$` is inline math, and `$$...$$` puts it on its
+own line. Common pieces: `\frac{3}{7}` (fraction), `a_{n-1}` (subscript), `3^n` (power), `\geq` (≥),
+`\cdot` (·), `\sqrt{2}` (√2).
+
+**Important:** when the problem contains backslashes (`\frac`, `\cdot`...), write it as
+String.raw`...` (with backticks) instead of "normal quotes". If you forget, the site won't publish and
+will tell you which problem to fix.
+
+**Where to find problems:** the AoPS Wiki
+([AMC](https://artofproblemsolving.com/wiki/index.php/AMC_Problems_and_Solutions),
+[AIME](https://artofproblemsolving.com/wiki/index.php/AIME_Problems_and_Solutions)) has every past problem
+with solutions. On a problem's page, the math images' hover text shows the LaTeX you can copy. Always fill
+in `source`, and check the answer yourself before posting.
+
 ## How to replace a resource link
 
 1. Open `src/data/weeklyLessons.ts` and find the week (search for its topic).

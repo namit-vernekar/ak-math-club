@@ -10,7 +10,7 @@ import type { WeeklyLesson } from "@/lib/types";
  * Searchable, filterable list of all weekly lessons, grouped by month.
  * Receives lessons already sorted newest-first.
  */
-export function LessonArchive({ lessons }: { lessons: WeeklyLesson[] }) {
+export function LessonArchive({ lessons, weeksWithProblems = [] }: { lessons: WeeklyLesson[]; weeksWithProblems?: number[] }) {
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState<string | null>(null);
 
@@ -93,7 +93,7 @@ export function LessonArchive({ lessons }: { lessons: WeeklyLesson[] }) {
             <ul className="lesson-list">
               {items.map((l) => (
                 <li key={l.week}>
-                  <LessonCard lesson={l} />
+                  <LessonCard lesson={l} hasProblems={weeksWithProblems.includes(l.week)} />
                 </li>
               ))}
             </ul>

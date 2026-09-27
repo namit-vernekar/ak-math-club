@@ -3,8 +3,19 @@ import { Announcements } from "@/components/Announcements";
 import { EuclidFigure } from "@/components/EuclidFigure";
 import { LessonCard } from "@/components/LessonCard";
 import { ResourceLinks } from "@/components/ResourceLinks";
+import { ProblemCard } from "@/components/ProblemCard";
+import { SmartLink } from "@/components/SmartLink";
 import { UpcomingEvents } from "@/components/UpcomingEvents";
-import { announcementsNewestFirst, latestLesson, lessonsNewestFirst, siteInfo, upcomingEvents } from "@/lib/content";
+import {
+  announcementsNewestFirst,
+  currentProblemWeek,
+  lastRevealedWeek,
+  latestLesson,
+  lessonsNewestFirst,
+  siteInfo,
+  upcomingEvents,
+  weeksWithProblems,
+} from "@/lib/content";
 import { formatDate, pad2 } from "@/lib/format";
 
 // How many earlier weeks to list under "Latest Week" on the home page.
@@ -31,6 +42,7 @@ const WHAT_WE_DO = [
 export default function HomePage() {
   const previous = lessonsNewestFirst.slice(1, 1 + PREVIOUS_WEEKS_SHOWN);
   const { meeting } = siteInfo;
+  const potw = currentProblemWeek;
 
   return (
     <>
@@ -85,7 +97,7 @@ export default function HomePage() {
             <Link href="/resources">All weekly resources →</Link>
           </div>
           {latestLesson ? (
-            <LessonCard lesson={latestLesson} featured />
+            <LessonCard lesson={latestLesson} featured hasProblems={weeksWithProblems.includes(latestLesson.week)} />
           ) : (
             <p className="empty-state">The first lesson of the year will be posted here soon.</p>
           )}
@@ -115,6 +127,56 @@ export default function HomePage() {
           )}
         </div>
       </section>
+
+      {(currentProblemWeek || lastRevealedWeek) && (
+        <section className="section" aria-labelledby="potw-title">
+          <div className="container">
+            <div className="section-head">
+              <div>
+                <p className="eyebrow">
+                  {currentProblemWeek ? `Week ${pad2(currentProblemWeek.week)} · ${currentProblemWeek.topic}` : "Weekly challenge"}
+                </p>
+                <h2 id="potw-title">Problem of the Week</h2>
+              </div>
+              <Link href="/problems">All problems →</Link>
+            </div>
+
+            {potw && (
+              <div className="problem-grid">
+                {potw.problems.map((p) => (
+                  <ProblemCard key={p.level} problem={p} week={potw.week} answersRevealed={false} />
+                ))}
+              </div>
+            )}
+
+            {lastRevealedWeek && (
+              <div className="last-answers">
+                <h3 className="eyebrow">
+                  Last week&rsquo;s answers · Week {pad2(lastRevealedWeek.week)}, {lastRevealedWeek.topic}
+                </h3>
+                <ul>
+                  {lastRevealedWeek.problems.map((p) => (
+                    <li key={p.level}>
+                      <span className="last-answers__level">Level {p.level}</span>
+                      <span className="muted">{p.source}</span>
+                      <details className="answer">
+                        <summary>Show answer</summary>
+                        <span dangerouslySetInnerHTML={{ __html: p.answerHtml }} />
+                        {p.solution && (
+                          <>
+                            {" · "}
+                            <SmartLink href={p.solution}>Solutions</SmartLink>
+                          </>
+                        )}
+                      </details>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </div>
+        </section>
+      )}
 
       <section className="section" aria-labelledby="what-title">
         <div className="container">

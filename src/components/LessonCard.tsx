@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { ResourceLinks } from "@/components/ResourceLinks";
 import { formatDate, pad2 } from "@/lib/format";
 import type { WeeklyLesson } from "@/lib/types";
@@ -8,9 +9,11 @@ type Props = {
   featured?: boolean;
   /** Heading level for the topic, to keep the page outline correct. */
   headingLevel?: "h2" | "h3";
+  /** Show a link to this week's Problem of the Week. */
+  hasProblems?: boolean;
 };
 
-export function LessonCard({ lesson, featured = false, headingLevel = "h3" }: Props) {
+export function LessonCard({ lesson, featured = false, headingLevel = "h3", hasProblems = false }: Props) {
   const Heading = headingLevel;
   const titleId = `week-${lesson.week}-title`;
   return (
@@ -29,6 +32,13 @@ export function LessonCard({ lesson, featured = false, headingLevel = "h3" }: Pr
         {lesson.description && <p className="lesson-card__desc">{lesson.description}</p>}
         {lesson.notes && <p className="lesson-card__note">{lesson.notes}</p>}
         <ResourceLinks lesson={lesson} />
+        {hasProblems && (
+          <p className="lesson-card__potw">
+            <Link href={`/problems#week-${lesson.week}`}>
+              Problem of the Week <span aria-hidden="true">→</span>
+            </Link>
+          </p>
+        )}
       </div>
     </article>
   );

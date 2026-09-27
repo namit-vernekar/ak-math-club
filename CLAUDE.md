@@ -22,6 +22,9 @@ Maintained by student officers who are not professional developers. Keep it simp
   Everything else is a server component.
 - `src/app/`: routes `/`, `/resources`, `/officers`, `/competitions`, `/about`, plus metadata files
   (icon.svg, apple-icon, opengraph-image, sitemap, robots).
+- Problem of the Week: optional `problems.level1/level2` on each lesson (LaTeX in `$...$`, written with
+  String.raw). Rendered to HTML at build time with KaTeX (`src/lib/math.ts`, no client JS). Answers show only
+  once a newer lesson exists. Page: `/problems`.
 - `CONTENT_GUIDE.md`: student-facing editing/deploy guide. Update it whenever the data shape changes.
 
 ## Commands

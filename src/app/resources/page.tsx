@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { LessonArchive } from "@/components/LessonArchive";
 import { PageHeader } from "@/components/PageHeader";
 import { SmartLink } from "@/components/SmartLink";
-import { lessonsNewestFirst, siteInfo } from "@/lib/content";
+import { lessonsNewestFirst, siteInfo, weeksWithProblems } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "Weekly Resources",
@@ -26,7 +26,7 @@ export default function ResourcesPage() {
               {siteInfo.resourcesNote}
             </p>
           )}
-          <LessonArchive lessons={lessonsNewestFirst} />
+          <LessonArchive lessons={lessonsNewestFirst} weeksWithProblems={weeksWithProblems} />
 
           {siteInfo.pastYears.length > 0 && (
             <div className="callout" style={{ marginTop: 48 }}>

@@ -298,7 +298,8 @@ img {
   min-height: 44px;
 }
 
-@media (max-width: 860px) {
+/* Switch to the "Menu" button when the full nav no longer fits on one line. */
+@media (max-width: 1060px) {
   .menu-button {
     display: inline-flex;
   }
@@ -746,6 +747,161 @@ img {
 @media (min-width: 861px) {
   .mini-row__head {
     display: contents;
+  }
+}
+
+/* ---------- Problem of the Week ---------- */
+
+.lesson-card__potw {
+  margin: 14px 0 0;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.problem-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr));
+  gap: 20px;
+  align-items: start;
+}
+.problem-card {
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-top: 4px solid var(--accent);
+  border-radius: var(--radius);
+  padding: 22px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-width: 0;
+}
+.problem-card--l2 {
+  border-top-color: var(--mark);
+}
+.problem-card__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.problem-card__level {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin: 0;
+  color: var(--accent);
+}
+.problem-card--l2 .problem-card__level {
+  color: var(--mark);
+}
+.problem-card__body {
+  font-size: 1.02rem;
+  line-height: 1.7;
+}
+.problem-card .katex {
+  font-size: 1.08em;
+  white-space: nowrap; /* keep short expressions like (a-1, b) on one line */
+}
+.problem-card .katex-display {
+  margin: 0.6em 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 4px 0;
+}
+.choices {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 20px;
+  font-size: 0.98rem;
+}
+.choices li {
+  display: inline-flex;
+  gap: 6px;
+  white-space: nowrap;
+}
+.choices__letter {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  color: var(--ink-3);
+}
+.problem-card__foot {
+  border-top: 1px solid var(--rule);
+  padding-top: 12px;
+  margin-top: auto;
+}
+.problem-card__source {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--ink-3);
+  margin: 0 0 8px;
+}
+.answer {
+  font-size: 0.95rem;
+  margin: 0;
+}
+.answer summary {
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--accent);
+  min-height: 32px;
+  display: inline-flex;
+  align-items: center;
+}
+.answer[open] summary {
+  margin-bottom: 6px;
+}
+.answer p {
+  margin: 0 0 4px;
+}
+.answer--pending {
+  color: var(--ink-3);
+  font-style: italic;
+}
+
+.problem-week + .problem-week {
+  margin-top: 56px;
+  padding-top: 40px;
+  border-top: 1px solid var(--rule);
+}
+.problem-week__head h2 {
+  margin-bottom: 20px;
+}
+
+.last-answers {
+  margin-top: 28px;
+  padding: 16px 20px;
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+}
+.last-answers ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+}
+.last-answers li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 14px;
+}
+.last-answers__level {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: 0.85rem;
+}
+
+@media (max-width: 480px) {
+  .problem-card {
+    padding: 18px 16px;
   }
 }
 
