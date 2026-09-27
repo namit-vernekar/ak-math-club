@@ -131,12 +131,7 @@ export default function HomePage() {
         <section className="section" aria-labelledby="potw-title">
           <div className="container">
             <div className="section-head">
-              <div>
-                <p className="eyebrow">
-                  {currentProblemWeek ? `Week ${pad2(currentProblemWeek.week)} · ${currentProblemWeek.topic}` : "Weekly challenge"}
-                </p>
-                <h2 id="potw-title">Problem of the Week</h2>
-              </div>
+              <h2 id="potw-title">Problem of the Week</h2>
               <Link href="/problems">All problems →</Link>
             </div>
 
