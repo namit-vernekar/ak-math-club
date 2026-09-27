@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { LogoMark } from "@/components/LogoMark";
 import { SmartLink } from "@/components/SmartLink";
 import { advisor, siteInfo } from "@/lib/content";
 import { hasLink } from "@/lib/format";
@@ -18,14 +19,10 @@ export function SiteFooter() {
       <div className="container">
         <div className="site-footer__grid">
           <div className="site-footer__about">
-            <h2>{siteInfo.name}</h2>
-            <p>
-              {siteInfo.school}
-              <br />
-              {siteInfo.location}
-              <br />
-              School year {siteInfo.schoolYear}
-            </p>
+            <Link href="/" className="brand">
+              <LogoMark />
+              <span>{siteInfo.name}</span>
+            </Link>
           </div>
           <nav aria-label="Footer">
             <h2>Pages</h2>
@@ -49,7 +46,6 @@ export function SiteFooter() {
           </div>
         </div>
         <div className="site-footer__base">
-          <span>A student-run club at {siteInfo.school}.</span>
           <span className="qed" aria-hidden="true">
             ∎
           </span>

@@ -87,6 +87,19 @@ export type Competition = {
   links: { label: string; url: string }[];
 };
 
+export type ClubEvent = {
+  /** YYYY-MM-DD. The event disappears from the site automatically after this day. */
+  date: string;
+  title: string;
+  /** e.g. "2:15–3:30 PM". Optional. */
+  time?: string;
+  /** Where it is, e.g. "CHMS". Optional. */
+  location?: string;
+  /** Extra details, e.g. "Meet in A103 first, like usual." Optional. */
+  details?: string;
+  link?: { label: string; url: string };
+};
+
 export type Announcement = {
   /** YYYY-MM-DD */
   date: string;

@@ -3,7 +3,8 @@ import Link from "next/link";
 import { Announcements } from "@/components/Announcements";
 import { PageHeader } from "@/components/PageHeader";
 import { SmartLink } from "@/components/SmartLink";
-import { advisor, announcementsNewestFirst, siteInfo } from "@/lib/content";
+import { UpcomingEvents } from "@/components/UpcomingEvents";
+import { advisor, announcementsNewestFirst, siteInfo, upcomingEvents } from "@/lib/content";
 import { hasLink } from "@/lib/format";
 
 export const metadata: Metadata = {
@@ -100,6 +101,8 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
+
+      <UpcomingEvents events={upcomingEvents} />
 
       <section className="section" aria-labelledby="announce-title">
         <div className="container">

@@ -3,7 +3,8 @@ import { Announcements } from "@/components/Announcements";
 import { EuclidFigure } from "@/components/EuclidFigure";
 import { LessonCard } from "@/components/LessonCard";
 import { ResourceLinks } from "@/components/ResourceLinks";
-import { announcementsNewestFirst, latestLesson, lessonsNewestFirst, siteInfo } from "@/lib/content";
+import { UpcomingEvents } from "@/components/UpcomingEvents";
+import { announcementsNewestFirst, latestLesson, lessonsNewestFirst, siteInfo, upcomingEvents } from "@/lib/content";
 import { formatDate, pad2 } from "@/lib/format";
 
 // How many earlier weeks to list under "Latest Week" on the home page.
@@ -60,6 +61,8 @@ export default function HomePage() {
           <EuclidFigure />
         </div>
       </section>
+
+      <UpcomingEvents events={upcomingEvents} />
 
       {announcementsNewestFirst.length > 0 && (
         <section className="section" aria-labelledby="announcements-title">

@@ -8,6 +8,7 @@ Almost everything you'll ever change lives in **four files** inside `src/data/`:
 | Weekly lessons (slides, worksheets, solutions)   | `src/data/weeklyLessons.ts`  |
 | Officers and the club advisor                    | `src/data/officers.ts`       |
 | Competitions                                     | `src/data/competitions.ts`   |
+| Upcoming events (parades, contests, socials)     | `src/data/events.ts`         |
 | Meeting info, links, announcements, school year  | `src/data/siteInfo.ts`       |
 
 **Golden rules**
@@ -161,6 +162,27 @@ Anything left as `""` shows "TBA". In the same file you can also update:
   hidden from the footer.
 - `schoolYear`: change it at the start of each year (e.g. `"2027–2028"`).
 - `siteUrl`: the public address of the site once it's deployed (used for link previews).
+
+## How to add an upcoming event
+
+Open `src/data/events.ts` and add a block to the list:
+
+```ts
+  {
+    date: "2026-10-16",
+    title: "Homecoming Parade",
+    time: "2:15–3:30 PM",
+    location: "CHMS",
+    details: "Meet in A103 first, like usual.",
+  },
+```
+
+- Events show on the **Home** and **About / Join** pages, soonest first.
+- An event **disappears automatically the day after its date**, so you don't have to remember to delete it
+  (delete old ones whenever you like to keep the file tidy).
+- `time`, `location`, and `details` are optional. You can also add
+  `link: { label: "Sign-up form", url: "https://..." }`.
+- With no upcoming events, the section is hidden.
 
 ## How to post an announcement
 

@@ -8,6 +8,7 @@ You'll only ever need to edit files in `src/data/`:
 - `src/data/weeklyLessons.ts`: weekly lessons and resource links
 - `src/data/officers.ts`: officers and the club advisor
 - `src/data/competitions.ts`: competitions
+- `src/data/events.ts`: upcoming events
 - `src/data/siteInfo.ts`: meeting info, links, announcements, school year
 
 ## Run locally
