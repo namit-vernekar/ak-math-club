@@ -81,5 +81,25 @@ export const weeklyLessons: WeeklyLesson[] = [
       },
     },
   },
-  // ⬇ Add Week 4 here (copy the template at the top of this file).
+  {
+    week: 4,
+    date: "2026-09-25",
+    topic: "Topic coming soon",
+    resources: {
+      slideshow: "",
+      worksheet: "https://docs.google.com/document/d/17B_Xz-z1xC4fOAZ-jJXnywbzvDLHJ2xLakysXRrQgUQ/edit",
+      solutions: "https://docs.google.com/document/d/1YRd7mLDGS32ILeSI7lgl0CP2g3yjBnknNDKlxNpzhFA/edit",
+    },
+  },
+  {
+    week: 5,
+    date: "2026-10-10",
+    topic: "Topic coming soon",
+    resources: {
+      slideshow: "",
+      worksheet: "",
+      solutions: "",
+    },
+  },
+  // ⬇ Add the next week here (copy the template at the top of this file).
 ];

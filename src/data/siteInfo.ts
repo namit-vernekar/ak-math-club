@@ -49,7 +49,7 @@ export const siteInfo = {
 
   // Shown above the lesson list on the Weekly Resources page. Leave "" to hide.
   resourcesNote:
-    "Some slide shows are shared only with the school. If Google asks you to request access, sign in with your school Google account.",
+    "Many materials are shared only with the school. If Google asks you to request access, sign in with your school Google account.",
 
   // Mu Alpha Theta (math honor society) info, carried over from the old site.
   muAlphaTheta: {
