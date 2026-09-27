@@ -133,7 +133,7 @@ export type ProblemWeek = {
   date: string;
   topic: string;
   problems: ProblemView[];
-  /** Answers are revealed once a newer week has been posted. */
+  /** Answers are revealed once a newer week's problems have been posted. */
   answersRevealed: boolean;
 };
 
@@ -154,10 +154,13 @@ function toView(week: number, level: 1 | 2, p: WeeklyProblem): ProblemView {
   };
 }
 
-/** Every week that has problems, newest first. */
+/**
+ * Every week that has problems, newest first. The newest one is the current
+ * Problem of the Week (answers hidden); older ones have their answers revealed.
+ */
 export const problemWeeks: ProblemWeek[] = lessonsNewestFirst
   .filter((l) => l.problems?.level1 || l.problems?.level2)
-  .map((l) => ({
+  .map((l, i) => ({
     week: l.week,
     date: l.date,
     topic: l.topic,
@@ -165,10 +168,10 @@ export const problemWeeks: ProblemWeek[] = lessonsNewestFirst
       l.problems?.level1 && toView(l.week, 1, l.problems.level1),
       l.problems?.level2 && toView(l.week, 2, l.problems.level2),
     ].filter((p): p is ProblemView => !!p),
-    answersRevealed: l !== latestLesson,
+    answersRevealed: i > 0,
   }));
 
-/** This week's problems (only if the newest lesson has them). */
+/** The current Problem of the Week (the newest week that has problems). */
 export const currentProblemWeek = problemWeeks.find((w) => !w.answersRevealed);
 
 /** The most recent week whose answers are now revealed. */

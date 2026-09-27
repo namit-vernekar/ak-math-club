@@ -16,8 +16,7 @@ export default function ProblemsPage() {
       <PageHeader eyebrow={`${siteInfo.schoolYear} · Weekly challenge`} title="Problem of the Week">
         <p>
           Two problems every week, matched to that week&rsquo;s topic. <strong>Level 1</strong> is about an AMC 10
-          #15; <strong>Level 2</strong> is about an AIME #4–5. Answers are posted when the next week&rsquo;s problems
-          go up.
+          #15; <strong>Level 2</strong> is about an AIME #4–5.
         </p>
       </PageHeader>
 
@@ -32,7 +31,7 @@ export default function ProblemsPage() {
                 <div className="problem-week__head">
                   <p className="eyebrow">
                     <span className="accent">Week {pad2(w.week)}</span> · <time dateTime={w.date}>{formatDate(w.date)}</time>
-                    {!w.answersRevealed && <> · This week</>}
+                    {!w.answersRevealed && <> · Current problems</>}
                   </p>
                   <h2 id={`pw-${w.week}`}>{w.topic}</h2>
                 </div>

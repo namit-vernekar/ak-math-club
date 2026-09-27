@@ -98,8 +98,9 @@ What happens automatically:
   ✓ or ✗. For multiple choice, `answer: "(E) 8078"` accepts both "E" and "8078". To accept other forms,
   add e.g. `accept: ["3/4", "0.75"],`. (The answer itself is never shown to students until it's revealed.)
 - The newest week's problems appear on the **Home** page and the **Problem of the Week** page.
-- The answers stay hidden until you post the **next** week. Then they appear under "Show answer",
-  with a link to the solutions.
+- The newest week **that has problems** stays the current Problem of the Week, even if you post
+  newer lessons without problems. Its answers stay hidden until you add problems to a later week;
+  then they appear under "Show answer", with a link to the solutions.
 - If a week has no problems, the section simply doesn't show.
 
 **Writing math:** put math between dollar signs. `$a_1 = 1$` is inline math, and `$$...$$` puts it on its

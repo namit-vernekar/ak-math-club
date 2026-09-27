@@ -93,7 +93,7 @@ export const weeklyLessons: WeeklyLesson[] = [
   },
   {
     week: 5,
-    date: "2026-10-10",
+    date: "2026-10-09",
     topic: "Topic coming soon",
     resources: {
       slideshow: "",
