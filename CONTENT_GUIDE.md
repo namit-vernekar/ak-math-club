@@ -94,6 +94,9 @@ Add a `problems` section inside that week in `src/data/weeklyLessons.ts`, right 
 ```
 
 What happens automatically:
+- Each problem gets a **"Check your answer"** box. Students type a letter or number and instantly see
+  ✓ or ✗. For multiple choice, `answer: "(E) 8078"` accepts both "E" and "8078". To accept other forms,
+  add e.g. `accept: ["3/4", "0.75"],`. (The answer itself is never shown to students until it's revealed.)
 - The newest week's problems appear on the **Home** page and the **Problem of the Week** page.
 - The answers stay hidden until you post the **next** week. Then they appear under "Show answer",
   with a link to the solutions.
@@ -181,7 +184,9 @@ advisor appears.
   },
 ```
 
-- Only fill in `date` and `registration` once they're **officially confirmed**. Until then, the page shows
+- Only fill in `date` and `registration` once they're **officially confirmed**. Use `dateNote` for extra
+  details, like a second date ("AMC 10 B: Fri, Nov 13") or a registration deadline.
+- `registration` appears as **"At AK"** on the page: how AK students sign up, or AK's teams. Until then, the page shows
   "TBA" and "Registration details coming soon".
 - Competitions with dates are listed first (soonest first); TBA ones follow.
 - Listing a competition doesn't mean the club is registered. Say so in `registration` when it's true.

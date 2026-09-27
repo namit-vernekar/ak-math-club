@@ -3,7 +3,7 @@ import { Announcements } from "@/components/Announcements";
 import { EuclidFigure } from "@/components/EuclidFigure";
 import { LessonCard } from "@/components/LessonCard";
 import { ResourceLinks } from "@/components/ResourceLinks";
-import { ProblemCard } from "@/components/ProblemCard";
+import { ProblemCard, ProblemEncouragement } from "@/components/ProblemCard";
 import { SmartLink } from "@/components/SmartLink";
 import { UpcomingEvents } from "@/components/UpcomingEvents";
 import {
@@ -141,6 +141,7 @@ export default function HomePage() {
               <Link href="/problems">All problems →</Link>
             </div>
 
+            {potw && <ProblemEncouragement />}
             {potw && (
               <div className="problem-grid">
                 {potw.problems.map((p) => (

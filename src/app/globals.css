@@ -830,6 +830,75 @@ img {
   font-weight: 500;
   color: var(--ink-3);
 }
+.potw-note {
+  max-width: 75ch;
+  margin: 0 0 24px;
+  padding: 14px 18px;
+  border-left: 4px solid var(--accent);
+  background: var(--accent-soft);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  color: var(--ink-2);
+}
+.potw-note strong {
+  color: var(--ink);
+}
+
+/* Answer checker */
+.checker {
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  padding: 12px 14px;
+}
+.checker__label {
+  display: block;
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-bottom: 6px;
+}
+.checker__row {
+  display: flex;
+  gap: 8px;
+}
+.checker__input {
+  flex: 1;
+  min-width: 0;
+  min-height: 44px;
+  padding: 8px 12px;
+  font: inherit;
+  font-family: var(--font-mono);
+  color: var(--ink);
+  background: var(--surface);
+  border: 1px solid var(--rule-strong);
+  border-radius: var(--radius);
+}
+.checker__input::placeholder {
+  font-family: var(--font-sans);
+  color: var(--ink-3);
+}
+.checker__button {
+  flex: none;
+}
+.checker__result {
+  margin: 0;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+.checker__result:not(:empty) {
+  margin-top: 8px;
+}
+.checker__result--correct {
+  color: #1d7a3e;
+}
+.checker__result--wrong {
+  color: var(--mark);
+}
+@media (prefers-color-scheme: dark) {
+  .checker__result--correct {
+    color: #6fd08f;
+  }
+}
+
 .problem-card__foot {
   border-top: 1px solid var(--rule);
   padding-top: 12px;
@@ -1280,6 +1349,12 @@ img {
 }
 .facts dd {
   margin: 0;
+}
+.facts__note {
+  display: block;
+  font-size: 0.86rem;
+  color: var(--ink-3);
+  margin-top: 2px;
 }
 .tba {
   color: var(--ink-3);

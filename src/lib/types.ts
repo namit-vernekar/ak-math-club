@@ -22,8 +22,13 @@ export type WeeklyProblem = {
   problem: string;
   /** Optional multiple-choice answers, in order (A), (B), (C)... */
   choices?: string[];
-  /** The answer, e.g. "(E) 8078" or "252". Shown once the next week is posted. */
+  /**
+   * The answer, e.g. "(E) 8078" or "252". Shown once the next week is posted.
+   * The answer checker accepts it automatically ("(E) 8078" accepts both "E" and "8078").
+   */
   answer: string;
+  /** Optional extra forms the checker should accept, e.g. ["3/4", "0.75"]. */
+  accept?: string[];
   /** Optional link to a worked solution (e.g. the AoPS Wiki page). */
   solution?: string;
 };
@@ -101,6 +106,8 @@ export type Competition = {
    * Leave as "" until confirmed; the site will show "Date TBA".
    */
   date: string;
+  /** Optional extra date detail shown under the date, e.g. "B date: Fri, Nov 13". */
+  dateNote?: string;
   /** How students sign up at Ardrey Kell. Leave "" until confirmed. */
   registration: string;
   /** Short grouping label, e.g. "National", "State", "Regional". */

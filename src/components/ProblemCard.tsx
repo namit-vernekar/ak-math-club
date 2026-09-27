@@ -1,4 +1,5 @@
 import "katex/dist/katex.min.css";
+import { AnswerChecker } from "@/components/AnswerChecker";
 import { SmartLink } from "@/components/SmartLink";
 import type { ProblemView } from "@/lib/content";
 
@@ -8,6 +9,17 @@ const LEVELS = {
 } as const;
 
 const LETTERS = "ABCDE";
+
+/** Friendly note shown above the problems. */
+export function ProblemEncouragement() {
+  return (
+    <p className="potw-note">
+      <strong>Don&rsquo;t worry if you can&rsquo;t get them!</strong> These are real competition problems, and
+      they&rsquo;re meant to be hard. Give them a try, talk them over with friends, and check the solutions when
+      they&rsquo;re posted. Every attempt makes you better.
+    </p>
+  );
+}
 
 type Props = {
   problem: ProblemView;
@@ -43,6 +55,8 @@ export function ProblemCard({ problem: p, week, answersRevealed }: Props) {
           ))}
         </ol>
       )}
+
+      <AnswerChecker hashes={p.answerHashes} salt={p.answerSalt} hint={p.inputHint} />
 
       <footer className="problem-card__foot">
         <p className="problem-card__source">Source: {p.source}</p>

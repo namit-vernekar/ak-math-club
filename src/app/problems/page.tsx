@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHeader } from "@/components/PageHeader";
-import { ProblemCard } from "@/components/ProblemCard";
+import { ProblemCard, ProblemEncouragement } from "@/components/ProblemCard";
 import { problemWeeks, siteInfo } from "@/lib/content";
 import { formatDate, pad2 } from "@/lib/format";
 
@@ -23,6 +23,7 @@ export default function ProblemsPage() {
 
       <section className="section" aria-label="Problems by week">
         <div className="container">
+          {problemWeeks.length > 0 && <ProblemEncouragement />}
           {problemWeeks.length === 0 ? (
             <p className="empty-state">The first Problem of the Week will be posted here soon.</p>
           ) : (

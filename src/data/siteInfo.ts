@@ -58,11 +58,9 @@ export const siteInfo = {
     note: "If you are on the roster, you are a current member in good standing. If you are a senior, your honor cord will automatically be ordered for you.",
   },
 
-  // Lessons from previous school years (on the old Google Sites page).
-  pastYears: [
-    { label: "2025–2026 schedule", url: "https://sites.google.com/view/akmathclub/schedule/schedule-25-26" },
-    { label: "2024–2025 schedule", url: "https://sites.google.com/view/akmathclub/schedule/schedule-24-25" },
-  ],
+  // Lessons from previous school years. Leave empty ([]) to hide the "older lessons" box
+  // on the Weekly Resources page. Example: { label: "2025–2026 schedule", url: "https://..." }
+  pastYears: [] as { label: string; url: string }[],
 };
 
 /**

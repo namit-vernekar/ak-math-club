@@ -18,6 +18,7 @@ import type { Competition } from "@/lib/types";
  *     description: "One or two sentences.",
  *     eligibility: "Who can participate",
  *     date: "",            // "YYYY-MM-DD" once confirmed
+ *     dateNote: "",        // optional extra detail, e.g. "B date: Nov 13"
  *     registration: "",    // how AK students sign up, once confirmed
  *     links: [{ label: "Official website", url: "https://..." }],
  *   },
@@ -26,28 +27,13 @@ import type { Competition } from "@/lib/types";
  */
 export const competitions: Competition[] = [
   {
-    name: "AMC 8",
-    level: "National",
-    description:
-      "The American Mathematics Competitions middle-school contest, run by the Mathematical Association of America (MAA).",
-    eligibility: "Students in grade 8 or below (see MAA for full rules).",
-    date: "",
-    registration: "",
-    links: [
-      { label: "MAA AMC website", url: "https://maa.org/student-programs/amc/" },
-      {
-        label: "Past problems (AoPS Wiki)",
-        url: "https://artofproblemsolving.com/wiki/index.php/AMC_Problems_and_Solutions",
-      },
-    ],
-  },
-  {
     name: "AMC 10",
     level: "National",
     description:
       "The American Mathematics Competitions contest for students in grade 10 and below. Strong scores can qualify students for the AIME.",
     eligibility: "Students in grade 10 or below (see MAA for full rules).",
-    date: "",
+    date: "2026-11-05",
+    dateNote: "AMC 10 A: Thu, Nov 5 · AMC 10 B: Fri, Nov 13 (dates from MAA)",
     registration: "",
     links: [
       { label: "MAA AMC website", url: "https://maa.org/student-programs/amc/" },
@@ -63,7 +49,8 @@ export const competitions: Competition[] = [
     description:
       "The American Mathematics Competitions contest for students in grade 12 and below. Strong scores can qualify students for the AIME.",
     eligibility: "Students in grade 12 or below (see MAA for full rules).",
-    date: "",
+    date: "2026-11-05",
+    dateNote: "AMC 12 A: Thu, Nov 5 · AMC 12 B: Fri, Nov 13 (dates from MAA)",
     registration: "",
     links: [
       { label: "MAA AMC website", url: "https://maa.org/student-programs/amc/" },
@@ -101,11 +88,13 @@ export const competitions: Competition[] = [
   {
     name: "Duke Math Meet",
     level: "Regional",
-    description: "A math competition hosted at Duke University.",
-    eligibility: "",
-    date: "",
-    registration: "",
-    links: [],
+    description:
+      "A regional math competition for high school students, hosted by Duke University each fall. Students compete in teams.",
+    eligibility: "High school students, in teams of 6.",
+    date: "2026-11-07",
+    dateNote: "Saturday, at Duke University. Team registration closes Oct 25.",
+    registration: "Ardrey Kell is sending two teams, JV and Varsity, with 6 students each (12 total).",
+    links: [{ label: "Duke Math Meet website", url: "https://dukemathmeet.org/" }],
   },
   {
     name: "NC State Math Contest",

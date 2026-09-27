@@ -11,6 +11,8 @@ import { advisor, officers } from "@/data/officers";
 import { announcements, siteInfo } from "@/data/siteInfo";
 import type { WeeklyLesson, WeeklyProblem } from "@/lib/types";
 import { hasLink } from "@/lib/format";
+import { createHash } from "node:crypto";
+import { acceptedAnswers } from "@/lib/answerCheck";
 import { findEscapeMistake, renderMath } from "@/lib/math";
 
 const DATE_RE = /^\d{4}-\d{2}-\d{2}$/;
@@ -102,6 +104,16 @@ export const lessonsNewestFirst: WeeklyLesson[] = [...weeklyLessons].sort(
 
 export const latestLesson: WeeklyLesson | undefined = lessonsNewestFirst[0];
 
+/**
+ * Lessons for the searchable archive, which runs in the browser.
+ * Problems are removed so their answers are never sent to visitors.
+ */
+export const lessonsForArchive: WeeklyLesson[] = lessonsNewestFirst.map((lesson) => {
+  const copy = { ...lesson };
+  delete copy.problems;
+  return copy;
+});
+
 /** A Problem of the Week, with its math already turned into HTML. */
 export type ProblemView = {
   level: 1 | 2;
@@ -110,6 +122,10 @@ export type ProblemView = {
   choicesHtml: string[];
   answerHtml: string;
   solution?: string;
+  /** For the answer checker: hashes of accepted answers (the answers themselves aren't sent). */
+  answerHashes: string[];
+  answerSalt: string;
+  inputHint: string;
 };
 
 export type ProblemWeek = {
@@ -121,8 +137,14 @@ export type ProblemWeek = {
   answersRevealed: boolean;
 };
 
-function toView(level: 1 | 2, p: WeeklyProblem): ProblemView {
+function toView(week: number, level: 1 | 2, p: WeeklyProblem): ProblemView {
+  const answerSalt = `akmc-w${week}-l${level}:`;
   return {
+    answerSalt,
+    answerHashes: acceptedAnswers(p.answer, p.accept).map((a) =>
+      createHash("sha256").update(answerSalt + a).digest("hex"),
+    ),
+    inputHint: p.choices?.length ? "Letter or number" : "Your answer",
     level,
     source: p.source,
     problemHtml: renderMath(p.problem),
@@ -140,8 +162,8 @@ export const problemWeeks: ProblemWeek[] = lessonsNewestFirst
     date: l.date,
     topic: l.topic,
     problems: [
-      l.problems?.level1 && toView(1, l.problems.level1),
-      l.problems?.level2 && toView(2, l.problems.level2),
+      l.problems?.level1 && toView(l.week, 1, l.problems.level1),
+      l.problems?.level2 && toView(l.week, 2, l.problems.level2),
     ].filter((p): p is ProblemView => !!p),
     answersRevealed: l !== latestLesson,
   }));
