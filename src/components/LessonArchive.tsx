@@ -2,7 +2,8 @@
 
 import { useMemo, useState } from "react";
 import { LessonCard } from "@/components/LessonCard";
-import { formatDate, formatMonth } from "@/lib/format";
+import { formatMonth } from "@/lib/format";
+import { matchesLessonSearch } from "@/lib/lessonSearch";
 import type { WeeklyLesson } from "@/lib/types";
 
 /**
@@ -18,25 +19,10 @@ export function LessonArchive({ lessons }: { lessons: WeeklyLesson[] }) {
     [lessons],
   );
 
-  const filtered = useMemo(() => {
-    const q = query.trim().toLowerCase();
-    return lessons.filter((l) => {
-      if (category && l.category !== category) return false;
-      if (!q) return true;
-      const haystack = [
-        l.topic,
-        l.description,
-        l.category,
-        l.notes,
-        `week ${l.week}`,
-        formatDate(l.date),
-      ]
-        .filter(Boolean)
-        .join(" ")
-        .toLowerCase();
-      return haystack.includes(q);
-    });
-  }, [lessons, query, category]);
+  const filtered = useMemo(
+    () => lessons.filter((l) => (!category || l.category === category) && matchesLessonSearch(l, query)),
+    [lessons, query, category],
+  );
 
   const groups = useMemo(() => {
     const map = new Map<string, WeeklyLesson[]>();
@@ -63,7 +49,7 @@ export function LessonArchive({ lessons }: { lessons: WeeklyLesson[] }) {
             id="lesson-search"
             className="search-input"
             type="search"
-            placeholder="Try “recursion” or “week 2”"
+            placeholder="Try “recursion”, “week 2”, or “9/18”"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             autoComplete="off"
