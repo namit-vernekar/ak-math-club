@@ -22,7 +22,7 @@ import type { Advisor, Officer } from "@/lib/types";
 export const advisor: Advisor = {
   name: "Mr. Erb",
   title: "Club Advisor",
-  subtitle: "AP Calculus Teacher",
+  subtitle: "Math Club advisor",
   email: "tyler1.erb@cms.k12.nc.us",
   website: "https://sites.google.com/site/mrerbb/home",
 };

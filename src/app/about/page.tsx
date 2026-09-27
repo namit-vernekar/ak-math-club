@@ -83,16 +83,14 @@ export default function AboutPage() {
 
       <UpcomingEvents events={upcomingEvents} />
 
-      <section className="section" aria-labelledby="announce-title">
-        <div className="container">
-          <h2 id="announce-title">Club announcements</h2>
-          {announcementsNewestFirst.length > 0 ? (
+      {announcementsNewestFirst.length > 0 && (
+        <section className="section" aria-labelledby="announce-title">
+          <div className="container">
+            <h2 id="announce-title">Club announcements</h2>
             <Announcements items={announcementsNewestFirst} />
-          ) : (
-            <p className="muted">No announcements right now. Check back soon.</p>
-          )}
-        </div>
-      </section>
+          </div>
+        </section>
+      )}
 
       <section className="section" aria-labelledby="mat-title">
         <div className="container">

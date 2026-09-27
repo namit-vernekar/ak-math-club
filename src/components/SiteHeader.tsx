@@ -59,7 +59,7 @@ export function SiteHeader({ shortName, schoolYear }: { shortName: string; schoo
                   aria-current={isCurrent(item.href) ? "page" : undefined}
                   onClick={() => setOpen(false)}
                 >
-                  {item.label}
+                  {item.short}
                 </Link>
               </li>
             ))}

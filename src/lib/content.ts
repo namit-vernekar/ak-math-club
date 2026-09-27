@@ -7,6 +7,7 @@
 import { weeklyLessons } from "@/data/weeklyLessons";
 import { competitions } from "@/data/competitions";
 import { events } from "@/data/events";
+import { volunteering } from "@/data/volunteering";
 import { advisor, officers } from "@/data/officers";
 import { announcements, siteInfo } from "@/data/siteInfo";
 import type { WeeklyLesson, WeeklyProblem } from "@/lib/types";
@@ -82,10 +83,12 @@ function validate() {
     for (const link of c.links) checkLink("competitions.ts", `${c.name} link "${link.label}"`, link.url);
   }
 
-  for (const e of events) {
-    if (!isValidDate(e.date)) fail("events.ts", `Event "${e.title}": date "${e.date}" must look like "2026-10-16".`);
-    if (!e.title?.trim()) fail("events.ts", `An event is missing a "title".`);
-    checkLink("events.ts", `Event "${e.title}"`, e.link?.url);
+  for (const [file, list] of [["events.ts", events], ["volunteering.ts", volunteering]] as const) {
+    for (const e of list) {
+      if (!isValidDate(e.date)) fail(file, `Event "${e.title}": date "${e.date}" must look like "2026-10-16".`);
+      if (!e.title?.trim()) fail(file, `An event is missing a "title".`);
+      checkLink(file, `Event "${e.title}"`, e.link?.url);
+    }
   }
 
   for (const a of announcements) {
@@ -186,6 +189,11 @@ export const weeksWithProblems = problemWeeks.map((w) => w.week);
  */
 const buildDay = new Date().toISOString().slice(0, 10);
 export const upcomingEvents = [...events]
+  .filter((e) => e.date >= buildDay)
+  .sort((a, b) => a.date.localeCompare(b.date));
+
+/** Volunteering events, same rules as above. */
+export const upcomingVolunteering = [...volunteering]
   .filter((e) => e.date >= buildDay)
   .sort((a, b) => a.date.localeCompare(b.date));
 

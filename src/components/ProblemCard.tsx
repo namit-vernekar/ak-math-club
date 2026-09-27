@@ -15,8 +15,7 @@ export function ProblemEncouragement() {
   return (
     <p className="potw-note">
       <strong>Don&rsquo;t worry if you can&rsquo;t get them!</strong> These are real competition problems, and
-      they&rsquo;re meant to be hard. Give them a try, talk them over with friends, and check the solutions when
-      they&rsquo;re posted. Every attempt makes you better.
+      they&rsquo;re meant to be hard.
     </p>
   );
 }

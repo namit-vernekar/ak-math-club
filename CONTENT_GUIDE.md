@@ -8,7 +8,8 @@ Almost everything you'll ever change lives in **four files** inside `src/data/`:
 | Weekly lessons (slides, worksheets, solutions)   | `src/data/weeklyLessons.ts`  |
 | Officers and the club advisor                    | `src/data/officers.ts`       |
 | Competitions                                     | `src/data/competitions.ts`   |
-| Upcoming events (parades, contests, socials)     | `src/data/events.ts`         |
+| Volunteering events (shown on Volunteering tab)  | `src/data/volunteering.ts`   |
+| Other upcoming events (shown on Home, About)     | `src/data/events.ts`         |
 | Meeting info, links, announcements, school year  | `src/data/siteInfo.ts`       |
 
 **Golden rules**
@@ -210,9 +211,13 @@ Anything left as `""` shows "TBA". In the same file you can also update:
 - `schoolYear`: change it at the start of each year (e.g. `"2027–2028"`).
 - `siteUrl`: the public address of the site once it's deployed (used for link previews).
 
-## How to add an upcoming event
+## How to add a volunteering event or upcoming event
 
-Open `src/data/events.ts` and add a block to the list:
+- **Volunteering** (parades, service events) goes in `src/data/volunteering.ts` and shows on the
+  **Volunteering** tab.
+- **Other events** go in `src/data/events.ts` and show on the **Home** and **About / Join** pages.
+
+Both files work the same way. Add a block to the list:
 
 ```ts
   {
@@ -224,12 +229,13 @@ Open `src/data/events.ts` and add a block to the list:
   },
 ```
 
-- Events show on the **Home** and **About / Join** pages, soonest first.
+- Events are listed soonest first.
 - An event **disappears automatically the day after its date**, so you don't have to remember to delete it
   (delete old ones whenever you like to keep the file tidy).
 - `time`, `location`, and `details` are optional. You can also add
   `link: { label: "Sign-up form", url: "https://..." }`.
-- With no upcoming events, the section is hidden.
+- With no upcoming events, the Home/About section is hidden, and the Volunteering tab says
+  "No volunteering events right now."
 
 ## How to post an announcement
 

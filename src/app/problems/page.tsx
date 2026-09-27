@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { PageHeader } from "@/components/PageHeader";
 import { ProblemCard, ProblemEncouragement } from "@/components/ProblemCard";
 import { problemWeeks, siteInfo } from "@/lib/content";
@@ -38,10 +37,6 @@ export default function ProblemsPage() {
               </section>
             ))
           )}
-          <p className="muted" style={{ marginTop: 40 }}>
-            Want more practice? Every week&rsquo;s worksheet is on the <Link href="/resources">Weekly Resources</Link>{" "}
-            page.
-          </p>
         </div>
       </section>
     </>

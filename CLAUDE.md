@@ -14,7 +14,8 @@ Maintained by student officers who are not professional developers. Keep it simp
 ## Layout
 
 - `src/data/`: **all content**. `weeklyLessons.ts`, `officers.ts` (includes `advisor`), `competitions.ts`,
-  `events.ts` (upcoming events; past ones auto-hide client-side), `siteInfo.ts` (meeting info, links, announcements, school year). Officers edit only these.
+  `events.ts` (upcoming events on Home/About) and `volunteering.ts` (Volunteering tab); past ones
+  auto-hide client-side, `siteInfo.ts` (meeting info, links, announcements, school year). Officers edit only these.
 - `src/lib/types.ts`: content types. `src/lib/content.ts`: sorts data and **validates it at build time**
   (throws friendly errors). `src/lib/format.ts`: client-safe helpers (dates, links).
 - `src/components/`: UI. Client components: `SiteHeader` (mobile menu), `LessonArchive` (search/filter),

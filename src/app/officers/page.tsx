@@ -11,9 +11,7 @@ export const metadata: Metadata = {
 export default function OfficersPage() {
   return (
     <>
-      <PageHeader eyebrow={`${siteInfo.schoolYear} · Leadership`} title="Officers">
-        <p>The students and faculty advisor who run {siteInfo.name}.</p>
-      </PageHeader>
+      <PageHeader eyebrow={`${siteInfo.schoolYear} · Leadership`} title="Officers" />
 
       <section className="section" aria-labelledby="advisor-title">
         <div className="container">
@@ -23,7 +21,7 @@ export default function OfficersPage() {
           <AdvisorCard advisor={advisor} />
 
           <h2 className="eyebrow" id="officers-title" style={{ marginTop: 48 }}>
-            Student officers
+            Officers
           </h2>
           <ul className="officer-grid" aria-labelledby="officers-title">
             {officers.map((o, i) => (

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { LogoMark } from "@/components/LogoMark";
 import { SmartLink } from "@/components/SmartLink";
-import { advisor, siteInfo } from "@/lib/content";
+import { siteInfo } from "@/lib/content";
 import { hasLink } from "@/lib/format";
 import { navItems } from "@/lib/nav";
 
@@ -11,7 +11,6 @@ export function SiteFooter() {
     { label: "Google Classroom", url: siteInfo.links.googleClassroom },
     { label: "Remind", url: siteInfo.links.remind },
     { label: "Instagram", url: siteInfo.links.instagram },
-    { label: `Email ${advisor.name}`, url: advisor.email ? `mailto:${advisor.email}` : "" },
   ].filter((l) => hasLink(l.url));
 
   return (
