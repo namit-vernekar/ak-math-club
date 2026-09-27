@@ -34,10 +34,9 @@ export default function OpenGraphImage() {
         </div>
         <div style={{ display: "flex", flexDirection: "column" }}>
           <div style={{ fontSize: 92, fontWeight: 700, lineHeight: 1.05 }}>{siteInfo.name}</div>
-          <div style={{ fontSize: 36, marginTop: 24, color: "#4a5470" }}>{siteInfo.tagline}</div>
         </div>
         <div style={{ display: "flex", fontSize: 28, color: "#4a5470" }}>
-          {siteInfo.school} · {siteInfo.location}
+          {siteInfo.school}
         </div>
       </div>
     ),

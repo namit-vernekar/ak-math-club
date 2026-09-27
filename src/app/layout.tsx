@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     type: "website",
     siteName: siteInfo.name,
     title: defaultTitle,
-    description: siteInfo.tagline,
+    description: siteInfo.description,
     locale: "en_US",
   },
   twitter: { card: "summary_large_image" },

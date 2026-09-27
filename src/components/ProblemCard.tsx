@@ -60,7 +60,7 @@ export function ProblemCard({ problem: p, week, answersRevealed }: Props) {
 
       <footer className="problem-card__foot">
         <p className="problem-card__source">Source: {p.source}</p>
-        {answersRevealed ? (
+        {answersRevealed && (
           <details className="answer">
             <summary>Show answer</summary>
             <p>
@@ -68,8 +68,6 @@ export function ProblemCard({ problem: p, week, answersRevealed }: Props) {
             </p>
             {p.solution && <SmartLink href={p.solution}>Worked solutions</SmartLink>}
           </details>
-        ) : (
-          <p className="answer answer--pending">Answer posted with next week&rsquo;s problems.</p>
         )}
       </footer>
     </article>

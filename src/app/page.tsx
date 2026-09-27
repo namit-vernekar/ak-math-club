@@ -16,7 +16,7 @@ import {
   upcomingEvents,
   weeksWithProblems,
 } from "@/lib/content";
-import { formatDate, pad2 } from "@/lib/format";
+import { formatDate, hasLink, pad2 } from "@/lib/format";
 
 // How many earlier weeks to list under "Latest Week" on the home page.
 const PREVIOUS_WEEKS_SHOWN = 3;
@@ -50,10 +50,9 @@ export default function HomePage() {
         <div className="container hero__inner">
           <div>
             <p className="eyebrow">
-              <span className="accent">{siteInfo.schoolYear}</span> · {siteInfo.school} · Charlotte, NC
+              <span className="accent">{siteInfo.schoolYear}</span> · {siteInfo.school}
             </p>
             <h1 id="hero-title">{siteInfo.name}</h1>
-            <p className="hero__tagline">{siteInfo.tagline}</p>
             <p className="hero__desc">
               {siteInfo.description} Every week we explore a new topic, and all of our lesson materials are posted here
               so you can keep practicing.
@@ -211,9 +210,18 @@ export default function HomePage() {
                 <dd>{meeting.room || "TBA"}</dd>
               </div>
             </dl>
-            <Link href="/about" className="button">
-              How to join
-            </Link>
+            <div className="button-row">
+              {hasLink(siteInfo.links.band) && (
+                <SmartLink href={siteInfo.links.band} className="button">
+                  Band
+                </SmartLink>
+              )}
+              {hasLink(siteInfo.links.instagram) && (
+                <SmartLink href={siteInfo.links.instagram} className="button">
+                  Instagram
+                </SmartLink>
+              )}
+            </div>
           </div>
         </div>
       </section>

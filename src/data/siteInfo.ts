@@ -15,10 +15,10 @@ export const siteInfo = {
   name: "Ardrey Kell Math Club",
   shortName: "AK Math Club",
   school: "Ardrey Kell High School",
+  // Not shown on the page; only used in the description search engines see.
   location: "Charlotte, North Carolina",
   // Update this (and the lessons/officers) at the start of each school year.
   schoolYear: "2026–2027",
-  tagline: "Explore mathematics. Prepare for competitions. Solve challenging problems.",
   description:
     "Ardrey Kell Math Club is a student organization focused on problem solving, mathematical exploration, and competition mathematics.",
 
@@ -32,9 +32,6 @@ export const siteInfo = {
     time: "2:15–3:00 PM",
     room: "A103",
   },
-
-  /** How to join. Leave "" until the officers decide; a placeholder is shown. */
-  howToJoin: "",
 
   // Links. Leave "" for anything the club doesn't have yet.
   links: {

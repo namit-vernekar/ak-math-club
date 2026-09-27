@@ -3,7 +3,6 @@ import Link from "next/link";
 import { PageHeader } from "@/components/PageHeader";
 import { ProblemCard, ProblemEncouragement } from "@/components/ProblemCard";
 import { problemWeeks, siteInfo } from "@/lib/content";
-import { formatDate, pad2 } from "@/lib/format";
 
 export const metadata: Metadata = {
   title: "Problem of the Week",
@@ -29,10 +28,6 @@ export default function ProblemsPage() {
             problemWeeks.map((w) => (
               <section key={w.week} id={`week-${w.week}`} className="problem-week" aria-labelledby={`pw-${w.week}`}>
                 <div className="problem-week__head">
-                  <p className="eyebrow">
-                    <span className="accent">Week {pad2(w.week)}</span> · <time dateTime={w.date}>{formatDate(w.date)}</time>
-                    {!w.answersRevealed && <> · Current problems</>}
-                  </p>
                   <h2 id={`pw-${w.week}`}>{w.topic}</h2>
                 </div>
                 <div className="problem-grid">

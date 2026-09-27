@@ -435,14 +435,6 @@ img {
 .hero h1 {
   margin-bottom: 0.35em;
 }
-.hero__tagline {
-  font-family: var(--font-serif);
-  font-size: clamp(1.2rem, 2.4vw, 1.5rem);
-  font-style: italic;
-  color: var(--ink-2);
-  margin-bottom: 1rem;
-  max-width: 34ch;
-}
 .hero__desc {
   color: var(--ink-2);
   max-width: 56ch;
@@ -1404,6 +1396,10 @@ img {
   border-right: 1px solid var(--rule);
   border-bottom: 1px solid var(--rule);
   margin: -1px -1px 0 0;
+}
+/* An odd item out at the end fills the whole row instead of leaving an empty cell. */
+.info-item:last-child:nth-child(odd) {
+  grid-column: 1 / -1;
 }
 .info-item dt {
   font-family: var(--font-mono);

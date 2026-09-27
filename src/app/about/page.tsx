@@ -4,12 +4,12 @@ import { Announcements } from "@/components/Announcements";
 import { PageHeader } from "@/components/PageHeader";
 import { SmartLink } from "@/components/SmartLink";
 import { UpcomingEvents } from "@/components/UpcomingEvents";
-import { advisor, announcementsNewestFirst, siteInfo, upcomingEvents } from "@/lib/content";
+import { announcementsNewestFirst, siteInfo, upcomingEvents } from "@/lib/content";
 import { hasLink } from "@/lib/format";
 
 export const metadata: Metadata = {
   title: "About / Join",
-  description: `What ${siteInfo.name} is, when we meet, and how to join.`,
+  description: `What ${siteInfo.name} is, when we meet, and where to find us.`,
 };
 
 function Placeholder({ children = "Coming soon" }: { children?: string }) {
@@ -18,12 +18,13 @@ function Placeholder({ children = "Coming soon" }: { children?: string }) {
 
 export default function AboutPage() {
   const { meeting, links } = siteInfo;
+  // Only channels that have a link are shown (add links in src/data/siteInfo.ts).
   const channels = [
     { label: "Band", url: links.band },
+    { label: "Instagram", url: links.instagram },
     { label: "Google Classroom", url: links.googleClassroom },
     { label: "Remind", url: links.remind },
-    { label: "Instagram", url: links.instagram },
-  ];
+  ].filter((c) => hasLink(c.url));
 
   return (
     <>
@@ -36,7 +37,7 @@ export default function AboutPage() {
           <div className="prose">
             <h2 id="about-title">About the club</h2>
             <p>
-              {siteInfo.name} is a student-run club at {siteInfo.school} in {siteInfo.location}. Each week we explore
+              {siteInfo.name} is a student-run club at {siteInfo.school}. Each week we explore
               a new topic, from number theory to combinatorics, and work through problems together.
             </p>
             <p>
@@ -65,42 +66,20 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="section" aria-labelledby="join-title">
-        <div className="container two-col">
-          <div className="prose">
-            <h2 id="join-title">How to join</h2>
-            {siteInfo.howToJoin ? (
-              <p>{siteInfo.howToJoin}</p>
-            ) : (
-              <p>
-                <Placeholder>Joining details will be posted here soon.</Placeholder>
-              </p>
-            )}
-            <p>
-              Questions? Contact our advisor,{" "}
-              {advisor.email ? <a href={`mailto:${advisor.email}`}>{advisor.name}</a> : advisor.name}, or any of our{" "}
-              <Link href="/officers">officers</Link>.
-            </p>
-          </div>
-          <div>
-            <h2>Stay connected</h2>
-            <dl className="info-grid">
+      {channels.length > 0 && (
+        <section className="section" aria-labelledby="connect-title">
+          <div className="container">
+            <h2 id="connect-title">Stay connected</h2>
+            <div className="button-row">
               {channels.map((c) => (
-                <div className="info-item" key={c.label}>
-                  <dt>{c.label}</dt>
-                  <dd>
-                    {hasLink(c.url) ? (
-                      <SmartLink href={c.url}>Join on {c.label}</SmartLink>
-                    ) : (
-                      <Placeholder>Link coming soon</Placeholder>
-                    )}
-                  </dd>
-                </div>
+                <SmartLink key={c.label} href={c.url} className="button">
+                  {c.label}
+                </SmartLink>
               ))}
-            </dl>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       <UpcomingEvents events={upcomingEvents} />
 
@@ -116,16 +95,18 @@ export default function AboutPage() {
       </section>
 
       <section className="section" aria-labelledby="mat-title">
-        <div className="container prose">
-          <h2 id="mat-title">Mu Alpha Theta</h2>
-          <p>{siteInfo.muAlphaTheta.note}</p>
-          {hasLink(siteInfo.muAlphaTheta.rosterUrl) && (
-            <p>
-              <SmartLink href={siteInfo.muAlphaTheta.rosterUrl} className="button">
-                View the current Mu Alpha Theta roster
-              </SmartLink>
-            </p>
-          )}
+        <div className="container">
+          <div className="prose">
+            <h2 id="mat-title">Mu Alpha Theta</h2>
+            <p>{siteInfo.muAlphaTheta.note}</p>
+            {hasLink(siteInfo.muAlphaTheta.rosterUrl) && (
+              <p>
+                <SmartLink href={siteInfo.muAlphaTheta.rosterUrl} className="button">
+                  View the current Mu Alpha Theta roster
+                </SmartLink>
+              </p>
+            )}
+          </div>
         </div>
       </section>
     </>
