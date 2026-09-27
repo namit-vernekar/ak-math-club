@@ -24,7 +24,7 @@ export const siteInfo = {
 
   // The public web address once the site is deployed, e.g. "https://akmathclub.vercel.app".
   // Used for link previews when the site is shared. Leave "" if unsure.
-  siteUrl: "",
+  siteUrl: "https://ak-math-club.vercel.app",
 
   meeting: {
     // "Fridays" and "A103" come from the old club website. Confirm them for 2026–2027.
